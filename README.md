@@ -1,1 +1,3 @@
-# Ss-login
+# SS LOGIN
+Standalone iOS ARM64 authentication component for an authorized host app. Upload all files, including .github/workflows/build.yml, to a GitHub repository. Run Build SSLogin in Actions and download the artifact.
+The host must link the library, import SSLogin.h, and call SSLoginPresent from the main thread with a visible view controller. The completion returns YES only for a successful HTTP response containing JSON boolean valid:true; otherwise NO. The host must enforce access and handle errors/retry itself. This library does not automatically appear or lock another compiled library. Device ID and key are sent to the supplied HTTPS endpoint; no key is persisted locally. No server test or iOS compilation has been performed. Revocation is checked on each verification, not continuously. The popup uses native iOS dark appearance and lime accent, not a custom full-screen skin.
