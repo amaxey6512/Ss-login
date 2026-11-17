@@ -5,3 +5,29 @@ on:
   push:
     branches:
       - main
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile SSLogin
+        run: |
+          xcrun --sdk iphoneos clang \
+            -arch arm64 \
+            -miphoneos-version-min=15.0 \
+            -fobjc-arc \
+            -dynamiclib \
+            SSLogin.m \
+            -framework Foundation \
+            -framework UIKit \
+            -o SSLogin.dylib
+
+      - name: Upload dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: SSLogin
+          path: SSLogin.dylib
